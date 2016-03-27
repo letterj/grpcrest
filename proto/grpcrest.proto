@@ -1,0 +1,67 @@
+// grpcrest test
+//
+// This is a test app for combining gRPC and REST
+
+syntax = 'proto3';
+
+package grpcrest;
+
+// Message service for gRPCRest
+service gRPCRestApi {
+  rpc createWidget(createWRequest) returns (createWResponse) {}
+  rpc listWidget(listWRequest) returns (listWResponse) {}
+  rpc deleteWidget(deleteWRequest) returns (deleteWResponse) {}
+  rpc updateWidget(updateWRequest) returns (updateWResponse) {}
+  rpc showWidget(showWRequest) returns (showWResponse) {}
+}
+
+// Create Widget Request
+message createWRequest {
+  string data   = 1;
+}
+
+// Create Widget Response
+message createWResponse {
+  string result = 1;
+}
+
+// List Widget Request
+message listWRequest {}
+
+// List Widget Response
+message listWResponse {
+  string result = 1;
+}
+
+// Delete Widget Request
+message deleteWRequest {
+  string id = 1;
+}
+
+// Delete Widget Response
+message deleteWResponse {
+  string result = 1;
+}
+
+// Update Widget Request
+message updateWRequest {
+  string data = 1;
+}
+
+// Update Widget Response
+message updateWResponse {
+  string result = 1;
+}
+
+// Show Widget Request
+message showWRequest {
+  string id = 1;
+}
+
+// SHow Widget Response
+message showWResponse {
+  string result = 1;
+}
+
+
+
