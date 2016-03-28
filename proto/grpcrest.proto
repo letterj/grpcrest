@@ -6,60 +6,84 @@ syntax = 'proto3';
 
 package grpcrest;
 
+import "google/api/annotations.proto";
+
 // Message service for gRPCRest
-service gRPCRestApi {
-  rpc createWidget(createWRequest) returns (createWResponse) {}
-  rpc listWidget(listWRequest) returns (listWResponse) {}
-  rpc deleteWidget(deleteWRequest) returns (deleteWResponse) {}
-  rpc updateWidget(updateWRequest) returns (updateWResponse) {}
-  rpc showWidget(showWRequest) returns (showWResponse) {}
+service GRPCRestApi {
+  rpc CreateWidget(CreateWRequest) returns (CreateWResponse) {
+	option (google.api.http) = {
+		put: "/v1/widget/{data}"
+		body: "*"
+		};
+	}
+  rpc ListWidget(ListWRequest) returns (ListWResponse) {
+	option (google.api.http) = {
+		get: "/v1/widget"
+		};
+	}
+  rpc DeleteWidget(DeleteWRequest) returns (DeleteWResponse) {
+	option (google.api.http) = {
+		delete: "/v1/widget/{id}"
+		};
+	}
+  rpc UpdateWidget(UpdateWRequest) returns (UpdateWResponse) {
+	option (google.api.http) = {
+		post: "/v1/widget/{data}"
+		body: "*"
+		};
+	}
+  rpc ShowWidget(ShowWRequest) returns (ShowWResponse) {
+	option (google.api.http) = {
+		get: "/v1/widget/{id}"
+		};
+	}
 }
 
 // Create Widget Request
-message createWRequest {
+message CreateWRequest {
   string data   = 1;
 }
 
 // Create Widget Response
-message createWResponse {
+message CreateWResponse {
   string result = 1;
 }
 
 // List Widget Request
-message listWRequest {}
+message ListWRequest {}
 
 // List Widget Response
-message listWResponse {
+message ListWResponse {
   string result = 1;
 }
 
 // Delete Widget Request
-message deleteWRequest {
+message DeleteWRequest {
   string id = 1;
 }
 
 // Delete Widget Response
-message deleteWResponse {
+message DeleteWResponse {
   string result = 1;
 }
 
 // Update Widget Request
-message updateWRequest {
+message UpdateWRequest {
   string data = 1;
 }
 
 // Update Widget Response
-message updateWResponse {
+message UpdateWResponse {
   string result = 1;
 }
 
 // Show Widget Request
-message showWRequest {
+message ShowWRequest {
   string id = 1;
 }
 
 // SHow Widget Response
-message showWResponse {
+message ShowWResponse {
   string result = 1;
 }
 
